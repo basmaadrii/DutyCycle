@@ -1,16 +1,23 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        04/24/2017  20:17:40  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        04/25/2017  02:11:36  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
 C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\main.obj TO .\Objects\dutycycle PRINT (.\Listings\dutycycle.m51) RAMSIZE (256)
 
 
-MEMORY MODEL: SMALL
+MEMORY MODEL: SMALL WITH FLOATING POINT ARITHMETIC
 
 
 INPUT MODULES INCLUDED:
   .\Objects\main.obj (MAIN)
+  C:\KEIL_V5\C51\LIB\C51FPS.LIB (?C?FPADD)
+  C:\KEIL_V5\C51\LIB\C51FPS.LIB (?C?FPMUL)
+  C:\KEIL_V5\C51\LIB\C51FPS.LIB (?C?FPDIV)
+  C:\KEIL_V5\C51\LIB\C51FPS.LIB (?C?FCAST)
+  C:\KEIL_V5\C51\LIB\C51FPS.LIB (?C?CASTF)
+  C:\KEIL_V5\C51\LIB\C51FPS.LIB (?C?FPGETOPN)
   C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?LNEG)
 
 
 LINK MAP OF MODULE:  .\Objects\dutycycle (MAIN)
@@ -21,28 +28,30 @@ LINK MAP OF MODULE:  .\Objects\dutycycle (MAIN)
 
             * * * * * * *   D A T A   M E M O R Y   * * * * * * *
             REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
-            DATA    0008H     0001H     UNIT         _DATA_GROUP_
-            IDATA   0009H     0001H     UNIT         ?STACK
+            DATA    0008H     0015H     UNIT         ?DT?MAIN
+            DATA    001DH     0002H     UNIT         ?DT?_TIMER_DELAY?MAIN
+            IDATA   001FH     0001H     UNIT         ?STACK
 
             * * * * * * *   C O D E   M E M O R Y   * * * * * * *
             CODE    0000H     0003H     ABSOLUTE     
                     0003H     07FDH                  *** GAP ***
-            CODE    0800H     008EH     UNIT         ?PR?MAIN?MAIN
-            CODE    088EH     000EH     UNIT         ?PR?_TIMER_DELAY?MAIN
-            CODE    089CH     000CH     UNIT         ?C_C51STARTUP
+            CODE    0800H     036BH     UNIT         ?C?LIB_CODE
+            CODE    0B6BH     0130H     UNIT         ?PR?MAIN?MAIN
+            CODE    0C9BH     0014H     UNIT         ?PR?_TIMER_DELAY?MAIN
+            CODE    0CAFH     000CH     UNIT         ?C_C51STARTUP
 
 
 
 OVERLAY MAP OF MODULE:   .\Objects\dutycycle (MAIN)
 
 
-SEGMENT                          DATA_GROUP 
-  +--> CALLED SEGMENT          START    LENGTH
-----------------------------------------------
-?C_C51STARTUP                  -----    -----
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
   +--> ?PR?MAIN?MAIN
 
-?PR?MAIN?MAIN                  0008H    0001H
+?PR?MAIN?MAIN
   +--> ?PR?_TIMER_DELAY?MAIN
 
 
@@ -50,6 +59,9 @@ SEGMENT                          DATA_GROUP
 SYMBOL TABLE OF MODULE:  .\Objects\dutycycle (MAIN)
 
   VALUE           TYPE          NAME
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/25/2017  02:11:36  PAGE 2
+
+
   ----------------------------------
 
   -------         MODULE        MAIN
@@ -57,96 +69,120 @@ SYMBOL TABLE OF MODULE:  .\Objects\dutycycle (MAIN)
   D:0090H         PUBLIC        P1
   D:00A0H         PUBLIC        P2
   B:00A0H.6       PUBLIC        errorLED
-  C:088EH         PUBLIC        _timer_delay
-  C:0800H         PUBLIC        main
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/24/2017  20:17:40  PAGE 2
-
-
+  D:0008H         PUBLIC        TH0_negative
+  D:0009H         PUBLIC        TL0_negative
+  D:000AH         PUBLIC        time_positive
+  C:0C9BH         PUBLIC        _timer_delay
+  D:000EH         PUBLIC        xhigh
+  D:000FH         PUBLIC        TH0_positive
+  C:0B6BH         PUBLIC        main
+  D:0010H         PUBLIC        TL0_positive
   B:00A0H.7       PUBLIC        SW
+  D:0011H         PUBLIC        error
   B:00A0H.0       PUBLIC        output
   D:0089H         PUBLIC        TMOD
+  D:0012H         PUBLIC        temp
+  D:0013H         PUBLIC        cycles_negative
   B:0088H.5       PUBLIC        TF0
+  D:0015H         PUBLIC        xlow
   D:008CH         PUBLIC        TH0
   D:008AH         PUBLIC        TL0
   B:0088H.4       PUBLIC        TR0
+  D:0016H         PUBLIC        cycles_positive
+  D:0018H         PUBLIC        time_negative
+  D:001CH         PUBLIC        x
   -------         PROC          MAIN
-  -------         DO            
-  D:0008H         SYMBOL        x
-  -------         ENDDO         
-  C:0800H         LINE#         7
-  C:0800H         LINE#         8
-  C:0800H         LINE#         9
-  C:0802H         LINE#         10
-  C:0804H         LINE#         11
-  C:0807H         LINE#         12
-  C:0807H         LINE#         13
-  C:0807H         LINE#         14
-  C:0809H         LINE#         15
-  C:080CH         LINE#         16
-  C:080CH         LINE#         17
-  C:080FH         LINE#         18
-  C:0825H         LINE#         19
-  C:0825H         LINE#         20
-  C:0825H         LINE#         21
-  C:0827H         LINE#         22
-  C:0829H         LINE#         23
-  C:0830H         LINE#         24
-  C:0832H         LINE#         25
-  C:0836H         LINE#         26
-  C:0838H         LINE#         28
-  C:0838H         LINE#         29
-  C:083AH         LINE#         30
-  C:083CH         LINE#         31
-  C:0843H         LINE#         32
-  C:0845H         LINE#         33
-  C:0849H         LINE#         34
-  C:084BH         LINE#         36
-  C:084BH         LINE#         37
-  C:084DH         LINE#         38
-  C:084FH         LINE#         39
-  C:0856H         LINE#         40
-  C:0858H         LINE#         41
-  C:085CH         LINE#         42
-  C:085EH         LINE#         44
-  C:085EH         LINE#         45
-  C:0860H         LINE#         46
-  C:0862H         LINE#         47
-  C:0869H         LINE#         48
-  C:086BH         LINE#         49
-  C:086FH         LINE#         50
-  C:0871H         LINE#         52
-  C:0871H         LINE#         53
-  C:0873H         LINE#         54
-  C:0875H         LINE#         55
-  C:087CH         LINE#         56
-BL51 BANKED LINKER/LOCATER V6.22                                                      04/24/2017  20:17:40  PAGE 3
+  C:0B6BH         LINE#         19
+  C:0B6BH         LINE#         20
+  C:0B6BH         LINE#         21
+  C:0B6DH         LINE#         22
+  C:0B6FH         LINE#         23
+  C:0B72H         LINE#         25
+  C:0B72H         LINE#         26
+  C:0B72H         LINE#         27
+  C:0B74H         LINE#         29
+  C:0B77H         LINE#         30
+  C:0B77H         LINE#         33
+  C:0B7DH         LINE#         34
+  C:0B88H         LINE#         35
+  C:0B94H         LINE#         36
+  C:0BA7H         LINE#         37
+  C:0BAAH         LINE#         39
+  C:0BB1H         LINE#         40
+  C:0BB3H         LINE#         43
+  C:0BD5H         LINE#         44
+  C:0BF0H         LINE#         45
+  C:0C15H         LINE#         46
+  C:0C3AH         LINE#         47
+  C:0C45H         LINE#         48
+  C:0C56H         LINE#         49
+  C:0C61H         LINE#         50
+  C:0C72H         LINE#         51
+  C:0C72H         LINE#         52
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/25/2017  02:11:36  PAGE 3
 
 
-  C:087EH         LINE#         57
-  C:0885H         LINE#         58
-  C:0887H         LINE#         60
-  C:0887H         LINE#         61
-  C:0889H         LINE#         62
-  C:088BH         LINE#         63
+  C:0C75H         LINE#         53
+  C:0C77H         LINE#         54
+  C:0C7EH         LINE#         55
+  C:0C80H         LINE#         56
+  C:0C87H         LINE#         57
+  C:0C8DH         LINE#         59
+  C:0C90H         LINE#         60
+  C:0C92H         LINE#         61
+  C:0C94H         LINE#         62
+  C:0C94H         LINE#         64
+  C:0C97H         LINE#         65
+  C:0C9AH         LINE#         66
   -------         ENDPROC       MAIN
   -------         PROC          _TIMER_DELAY
-  D:0007H         SYMBOL        low
-  D:0005H         SYMBOL        high
-  C:088EH         LINE#         68
-  C:088EH         LINE#         69
-  C:088EH         LINE#         70
-  C:0890H         LINE#         71
-  C:0892H         LINE#         72
-  C:0894H         LINE#         73
-  C:0897H         LINE#         74
-  C:0899H         LINE#         75
-  C:089BH         LINE#         76
+  D:001DH         SYMBOL        low
+  D:001EH         SYMBOL        high
+  C:0C9BH         LINE#         68
+  C:0C9FH         LINE#         69
+  C:0C9FH         LINE#         70
+  C:0CA2H         LINE#         71
+  C:0CA5H         LINE#         72
+  C:0CA7H         LINE#         73
+  C:0CAAH         LINE#         74
+  C:0CACH         LINE#         75
+  C:0CAEH         LINE#         76
   -------         ENDPROC       _TIMER_DELAY
   -------         ENDMOD        MAIN
 
+  -------         MODULE        ?C?FPADD
+  C:0807H         PUBLIC        ?C?FPADD
+  C:0803H         PUBLIC        ?C?FPSUB
+  -------         ENDMOD        ?C?FPADD
+
+  -------         MODULE        ?C?FPMUL
+  C:08F8H         PUBLIC        ?C?FPMUL
+  -------         ENDMOD        ?C?FPMUL
+
+  -------         MODULE        ?C?FPDIV
+  C:0A01H         PUBLIC        ?C?FPDIV
+  -------         ENDMOD        ?C?FPDIV
+
+  -------         MODULE        ?C?FCAST
+  C:0AA8H         PUBLIC        ?C?FCASTC
+  C:0AA3H         PUBLIC        ?C?FCASTI
+  C:0A9EH         PUBLIC        ?C?FCASTL
+  -------         ENDMOD        ?C?FCAST
+
+  -------         MODULE        ?C?CASTF
+  C:0ADCH         PUBLIC        ?C?CASTF
+  -------         ENDMOD        ?C?CASTF
+
+  -------         MODULE        ?C?LNEG
+  C:0B5DH         PUBLIC        ?C?LNEG
+  -------         ENDMOD        ?C?LNEG
+
 ******************************************************************************
-* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 009CH BYTE ( 7%) *
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0144H BYTE (15%) *
+BL51 BANKED LINKER/LOCATER V6.22                                                      04/25/2017  02:11:36  PAGE 4
+
+
 ******************************************************************************
 
-Program Size: data=10.0 xdata=0 code=171
+Program Size: data=32.0 xdata=0 code=1214
 LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
