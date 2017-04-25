@@ -1,6 +1,3 @@
-//Basma Kadry Osman		3052
-//Nouran Kamel El Sekiely 2967
-
 #include <at89c51xd2.h>
 #include <stdio.h>
 #define dc P1
